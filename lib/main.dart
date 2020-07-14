@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:teachable_ml/pages/home_page.dart';
@@ -12,20 +13,20 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return MaterialApp(
+    return DynamicTheme(
+      defaultBrightness: Brightness.light,      
+      data: (brightness) => new ThemeData(
+        primarySwatch: Colors.indigo,
+        brightness: brightness,
+      ),
+      themedWidgetBuilder: (context, theme) {
+        return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'TFLite (Cat or Dog)',
-      theme: _buildTheme(),
+      title: 'TFLite (Apple, Pear or Strawberry)',
+      theme: theme,
       home: HomePage(),
     );
-  }
-
-  _buildTheme() {
-    return ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: Color(0xFF212121),
-      accentColor: Colors.deepOrange,
-      primarySwatch: Colors.deepOrange,
+      },
     );
   }
 }

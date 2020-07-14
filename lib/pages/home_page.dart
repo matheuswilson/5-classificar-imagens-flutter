@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:teachable_ml/helpers/camera_helper.dart';
@@ -33,6 +34,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Teachable Machine'),
+        actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.lightbulb_outline),
+          onPressed: _changeBrightness,
+        ),
+      ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.photo_camera),
@@ -50,6 +57,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _changeBrightness() {
+    DynamicTheme.of(context).setBrightness(
+        Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark);
   }
 
   _buildImage() {
@@ -96,7 +110,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
       child: Container(
-        height: 150.0,
+        height: 200.0,
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white,

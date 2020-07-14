@@ -1,2 +1,3 @@
-0 Gato
-1 Cachorro
+0 Porco
+1 Urubu
+2 Golfinho
